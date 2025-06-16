@@ -1,15 +1,15 @@
-package com.qa.listeners;
-
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.qa.util.ExtentReportManager;
+import java.io.IOException;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class ExtentTestListener implements ITestListener {
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.qa.base.TestBase;
+import com.qa.util.ExtentReportManager;
+
+public class ExtentTestListener extends TestBase implements ITestListener {
 
     private static ExtentReports extent = ExtentReportManager.getReportInstance();
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
@@ -22,25 +22,19 @@ public class ExtentTestListener implements ITestListener {
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        extentTest.get().log(Status.PASS, "Test Passed");
+        extentTest.get().pass("Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        extentTest.get().log(Status.FAIL, "Test Failed");
-        extentTest.get().log(Status.FAIL, result.getThrowable());
-
+        extentTest.get().fail(result.getThrowable());
         String screenshotPath = ExtentReportManager.getScreenshot(result.getMethod().getMethodName());
-        try {
-            extentTest.get().addScreenCaptureFromPath(screenshotPath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        extentTest.get().addScreenCaptureFromPath(screenshotPath, "Failed Test Screenshot");
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        extentTest.get().log(Status.SKIP, "Test Skipped");
+        extentTest.get().skip("Test Skipped");
     }
 
     @Override
