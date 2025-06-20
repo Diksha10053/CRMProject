@@ -18,7 +18,7 @@ public class LoginPage extends TestBase{
 	@CacheLookup
 	WebElement password;
 	
-	@FindBy(xpath="//a[@class='btn btn-primary btn-xs-2 btn-shadow btn-rect btn-icon btn-icon-left']")
+	@FindBy(xpath="//a[contains(text(),'Login')]")
 	WebElement startHere;
 	
 	@FindBy(xpath= "//div[contains(text(),'Login')]")

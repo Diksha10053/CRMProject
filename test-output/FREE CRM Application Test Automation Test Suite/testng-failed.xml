@@ -6,6 +6,25 @@
   </listeners>
   <test thread-count="5" name="Free CRM App Test Cases(failed)">
     <classes>
+      <class name="com.qa.testcases.LoginPageTest">
+        <methods>
+          <include name="loginchk"/>
+          <include name="setup"/>
+          <include name="LoginPageTitleTest"/>
+          <include name="teardown"/>
+          <include name="LoginPageLogoTest"/>
+        </methods>
+      </class> <!-- com.qa.testcases.LoginPageTest -->
+      <class name="com.qa.testcases.HomePageTest">
+        <methods>
+          <include name="validateTitle"/>
+          <include name="validateContact"/>
+          <include name="teardown"/>
+          <include name="ValidateName"/>
+          <include name="validateTask"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.qa.testcases.HomePageTest -->
       <class name="com.qa.testcases.ContactPageTest">
         <methods>
           <include name="quit"/>

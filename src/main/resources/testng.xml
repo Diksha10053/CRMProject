@@ -11,6 +11,8 @@
 	<classes>
 			<class name="com.qa.testcases.LoginPageTest"></class>
 			<class name="com.qa.testcases.ContactPageTest"></class>
+			<class name="com.qa.testcases.HomePageTest"></class>
+
 
 	</classes>
 	</test>
