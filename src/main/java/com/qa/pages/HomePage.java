@@ -37,10 +37,7 @@ public class HomePage extends TestBase{
 		contacts.click();
 		return new ContactPage();
 	}
-	public CalenderPage checkCalender() {
-		calender.click();
-		return new CalenderPage();
-	}
+	
 	public TaskPage validateTaskPage() {
 		tasks.click();
 		return new TaskPage();

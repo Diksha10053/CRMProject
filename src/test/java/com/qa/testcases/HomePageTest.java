@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.base.TestBase;
-import com.qa.pages.CalenderPage;
 import com.qa.pages.ContactPage;
 import com.qa.pages.HomePage;
 import com.qa.pages.LoginPage;
@@ -18,7 +17,7 @@ public class HomePageTest extends TestBase{
 	HomePage homepage;
 	ContactPage contact;
 	TaskPage task;
-	CalenderPage cal;
+
 	
 	public HomePageTest() {
 		super();
