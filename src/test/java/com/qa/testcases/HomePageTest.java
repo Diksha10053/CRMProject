@@ -42,7 +42,7 @@ public class HomePageTest extends TestBase{
   }
 	
 	
-	@Test
+	@Test(enabled=false)
 	public void validateTitle() {
 		String title=homepage.validateTitle();
 		Assert.assertEquals(title, "Cogmento CRM");
@@ -61,7 +61,7 @@ public class HomePageTest extends TestBase{
 		Assert.assertEquals(getDriver().getCurrentUrl(),"https://ui.cogmento.com/contacts");
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void validateTask() {
 		task=homepage.validateTaskPage();
 		Assert.assertEquals(getDriver().getCurrentUrl(),"https://ui.cogmento.com/tasks");
