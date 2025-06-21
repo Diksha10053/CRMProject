@@ -32,7 +32,7 @@ public class ContactPage extends TestBase {
 	WebElement save;
 	
 	public ContactPage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	public boolean validateContactLogo() {
@@ -45,10 +45,10 @@ public class ContactPage extends TestBase {
 		lname.sendKeys(LName);
 		status.click();
 		String xpathSelect=String.format("//span[contains(text(),'%s')]", sselect); 				//dynamic xpath
-		driver.findElement(By.xpath(xpathSelect)).click();  										//selecting dropdown
+		getDriver().findElement(By.xpath(xpathSelect)).click();  										//selecting dropdown
 		category.click();
 		String xpathCategory=String.format("//span[contains(text(),'%s')]", cselect); 				//dynamic xpath
-		driver.findElement(By.xpath(xpathCategory)).click(); 									    //selecting dropdown for category
+		getDriver().findElement(By.xpath(xpathCategory)).click(); 									    //selecting dropdown for category
 		save.click();
 	}
 }

@@ -17,10 +17,18 @@ import com.qa.util.TestUtil;
 
 public class TestBase {
 
+
+   
+
     public static WebDriver driver;
+	public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<>();
+
     public static Properties pr;
     public static ExtentReports extent;
-
+    
+    public static WebDriver getDriver() {
+        return tdriver.get();
+    }
     public TestBase() {
         pr = new Properties();
         try {
@@ -42,16 +50,20 @@ public class TestBase {
         if (browserName.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
+            tdriver.set(driver);
+
         } else if (browserName.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
+            driver= new FirefoxDriver();
+            tdriver.set(driver);
+
         }
 
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.pageLoad));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.implicit_wait));
-        driver.get(pr.getProperty("url"));
+        getDriver().manage().window().maximize();
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(TestUtil.pageLoad));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(TestUtil.implicit_wait));
+        getDriver().get(pr.getProperty("url"));
     }
 
 }

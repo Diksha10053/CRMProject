@@ -30,7 +30,7 @@ public class ExtentReportManager extends TestBase {
     }
 
     public static String getScreenshot(String methodName) {
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File src = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
         String path = System.getProperty("user.dir") + "/screenshots/" + methodName + "_failed.png";
         File destination = new File(path);
         try {

@@ -13,8 +13,6 @@ public class HomePage extends TestBase{
 	@FindBy(xpath="//span[@class='user-display']")
 	WebElement nameDisplay;
 	
-	@FindBy(name="calendar icon")
-	WebElement calender;
 	
 	@FindBy(xpath="//i[@class= 'users icon']")
 	WebElement contacts;
@@ -24,14 +22,14 @@ public class HomePage extends TestBase{
 	
 	//Actions
 	public HomePage() {
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 		
 	}
 	public String validateName() {
 		return nameDisplay.getText();
 	}
 	public String validateTitle() {
-		return driver.getTitle();
+		return getDriver().getTitle();
 	}
 	public ContactPage checkContact() {
 		contacts.click();

@@ -58,7 +58,8 @@ public class ContactPageTest extends TestBase{
 	
 	@AfterMethod
 	public void quit() {
-		driver.quit();
+		getDriver().quit();
+		getDriver().close();
 	}
 	
 }

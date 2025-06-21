@@ -29,11 +29,20 @@ public class HomePageTest extends TestBase{
 	loginpage= new LoginPage();
 	contact=new ContactPage();
 	task= new TaskPage();
-	homepage=loginpage.login(pr.getProperty("user"), pr.getProperty("password"));
 	
-	}
+	  try {
+          homepage = loginpage.login(pr.getProperty("user"), pr.getProperty("password"));
+          Assert.assertNotNull(homepage, "Login failed. HomePage object is null.");
+      } catch (Exception e) {
+          e.printStackTrace();
+          Assert.fail("Exception during login: " + e.getMessage());
+      }
+
+      System.out.println("Thread ID: " + Thread.currentThread().getId()+ " - Setup complete");
+  }
 	
-	@Test(priority=3)
+	
+	@Test
 	public void validateTitle() {
 		String title=homepage.validateTitle();
 		Assert.assertEquals(title, "Cogmento CRM");
@@ -46,18 +55,20 @@ public class HomePageTest extends TestBase{
 		Assert.assertEquals(vname, "Diksha Sharma");
 	}
 	
-	@Test(priority=1)
+	@Test
 	public void validateContact() {
 		contact=homepage.checkContact();
+		Assert.assertEquals(getDriver().getCurrentUrl(),"https://ui.cogmento.com/contacts");
 	}
 	
-	@Test(priority=2)
+	@Test
 	public void validateTask() {
 		task=homepage.validateTaskPage();
+		Assert.assertEquals(getDriver().getCurrentUrl(),"https://ui.cogmento.com/tasks");
 	}
 	
 	@AfterMethod
 	public void teardown() {
-		driver.quit();
+		getDriver().quit();
 	}
 }
